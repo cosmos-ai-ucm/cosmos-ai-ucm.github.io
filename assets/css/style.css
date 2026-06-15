@@ -266,6 +266,79 @@ section:nth-child(even) {
   color: var(--text-light);
 }
 
+/* Schedule Table */
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.schedule-table thead {
+  background: var(--primary-color);
+  color: white;
+}
+
+.schedule-table th {
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.schedule-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.schedule-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.schedule-table tbody tr:hover {
+  background: var(--bg-light);
+}
+
+/* Module Detail Pages */
+.module-meta {
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.activity-list {
+  margin-top: 30px;
+}
+
+.activity-item {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  padding: 25px 30px;
+  margin-bottom: 20px;
+}
+
+.activity-item h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.activity-item ul {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.activity-item ul li {
+  margin-bottom: 6px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 30px;
+  font-weight: 500;
+}
+
 /* Applications */
 .applications-list {
   display: grid;

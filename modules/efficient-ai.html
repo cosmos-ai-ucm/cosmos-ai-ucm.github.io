@@ -1,0 +1,57 @@
+---
+layout: default
+title: Efficient AI & Edge Deployment
+---
+
+<section class="hero">
+  <div class="container">
+    <h1>4. Efficient AI &amp; Edge Deployment</h1>
+    <p class="subtitle">July 20&ndash;21 &mdash; Xiaofan</p>
+  </div>
+</section>
+
+<section class="about">
+  <div class="container">
+    <h2 class="section-title">Overview</h2>
+    <p>
+      A model that performs well in a notebook isn't always a model that can run on a phone, a sensor, or a
+      robot. This module looks at the gap between "it works" and "it runs efficiently" &mdash; covering model
+      compression techniques and what it takes to deploy a model to resource-constrained edge hardware.
+    </p>
+
+    <h2 class="section-title" style="margin-top:40px;">Learning Objectives</h2>
+    <ul style="margin-left: 20px;">
+      <li>Explain why model size, latency, and power consumption matter for real-world AI</li>
+      <li>Describe quantization and pruning as model compression techniques</li>
+      <li>Apply post-training quantization to a trained model and measure the size/accuracy/latency tradeoff</li>
+      <li>Export a model to a deployment-ready format (e.g., ONNX or TFLite)</li>
+      <li>Benchmark a model under simulated edge constraints and discuss design tradeoffs</li>
+    </ul>
+
+    <h2 class="section-title" style="margin-top:40px;">Day-by-Day Activities</h2>
+    <div class="activity-list">
+      <div class="activity-item">
+        <h3>Day 1 (Jul 20) &mdash; Model Compression</h3>
+        <p>Make models smaller and faster without starting over.</p>
+        <ul>
+          <li>Take a model trained earlier in the program and measure its size, latency, and accuracy as a baseline</li>
+          <li>Apply post-training quantization (e.g., float32 &rarr; int8) and re-measure</li>
+          <li>Explore pruning: remove low-importance weights/channels and observe the accuracy/size tradeoff</li>
+          <li>Build a table comparing baseline vs. compressed models</li>
+        </ul>
+      </div>
+      <div class="activity-item">
+        <h3>Day 2 (Jul 21) &mdash; Edge Deployment</h3>
+        <p>Get a model ready for the real world.</p>
+        <ul>
+          <li>Export a trained model to ONNX or TFLite format</li>
+          <li>Run inference with the exported model and compare outputs to the original</li>
+          <li>Benchmark inference time under simulated edge constraints (e.g., limited CPU threads/memory)</li>
+          <li>Discussion: how would you choose a model for a self-driving car's onboard computer vs. a cloud server?</li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="back-link" href="/modules">&larr; Back to Modules</a>
+  </div>
+</section>

@@ -27,3 +27,7 @@ navigation:
     url: /
   - title: Modules
     url: /modules
+  - title: Staff
+    url: /staff
+  - title: Resources
+    url: /resources

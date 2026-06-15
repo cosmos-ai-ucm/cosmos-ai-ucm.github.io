@@ -1,0 +1,85 @@
+---
+layout: default
+title: Scaling & Parallelism
+---
+
+<section class="hero">
+  <div class="container">
+    <h1>5. Scaling &amp; Parallelism</h1>
+    <p class="subtitle">July 22 &ndash; August 1 &mdash; Dong</p>
+  </div>
+</section>
+
+<section class="about">
+  <div class="container">
+    <h2 class="section-title">Overview</h2>
+    <p>
+      The final and longest module ties everything together. Students learn how real AI systems scale beyond a
+      single process &mdash; using multiprocessing, multithreading, and distributed training &mdash; and then apply
+      these ideas to a self-chosen capstone project, producing reproducible code and a final presentation/demo.
+    </p>
+
+    <h2 class="section-title" style="margin-top:40px;">Learning Objectives</h2>
+    <ul style="margin-left: 20px;">
+      <li>Differentiate multiprocessing from multithreading and know when to use each in Python</li>
+      <li>Parallelize a CPU-bound task using Python's <code>multiprocessing</code> module</li>
+      <li>Explain the basics of distributed and data-parallel training</li>
+      <li>Simulate MPI-style communication patterns (broadcast, scatter, gather, reduce)</li>
+      <li>Apply scaling techniques to a self-chosen project</li>
+      <li>Produce reproducible code and deliver a short presentation/demo</li>
+    </ul>
+
+    <h2 class="section-title" style="margin-top:40px;">Phases</h2>
+    <div class="activity-list">
+      <div class="activity-item">
+        <h3>Phase 1 &mdash; Multiprocessing &amp; Multithreading</h3>
+        <p>The building blocks of parallel programs.</p>
+        <ul>
+          <li>Threads vs. processes, and why Python's Global Interpreter Lock (GIL) matters</li>
+          <li>Use <code>multiprocessing</code> to parallelize a CPU-bound task (e.g., processing a large batch of images)</li>
+          <li>Use <code>threading</code> for an I/O-bound task and compare speedups</li>
+          <li>Benchmark single-process vs. multi-process runtimes</li>
+        </ul>
+      </div>
+      <div class="activity-item">
+        <h3>Phase 2 &mdash; Distributed Training &amp; Data Parallelism</h3>
+        <p>How training scales across multiple workers and devices.</p>
+        <ul>
+          <li>Concepts: data parallelism vs. model parallelism, gradient synchronization, and batch splitting</li>
+          <li>Simulate data-parallel training by splitting a dataset across multiple worker processes</li>
+          <li>Compare training time and results to a single-process baseline</li>
+        </ul>
+      </div>
+      <div class="activity-item">
+        <h3>Phase 3 &mdash; MPI-Style Workflows</h3>
+        <p>The communication patterns behind large-scale computing.</p>
+        <ul>
+          <li>Core MPI patterns: send/receive, broadcast, scatter, gather, and reduce</li>
+          <li>Simulate these patterns with <code>mpi4py</code> on a toy distributed computation</li>
+          <li>Connect MPI patterns back to how distributed training synchronizes gradients</li>
+        </ul>
+      </div>
+      <div class="activity-item">
+        <h3>Phase 4 &mdash; Capstone Project</h3>
+        <p>Apply everything you've learned this summer to a project of your choice.</p>
+        <ul>
+          <li><strong>Option A:</strong> Image classifier at scale &mdash; parallelize data loading and training for a larger dataset</li>
+          <li><strong>Option B:</strong> Recommendation system &mdash; parallelize similarity computation or matrix factorization across users/items</li>
+          <li><strong>Option C:</strong> Parallelized data analysis &mdash; process a large dataset using multiprocessing and compare to a serial baseline</li>
+          <li>Deliverable: a reproducible code repository (clear setup instructions, scripts, and results)</li>
+        </ul>
+      </div>
+      <div class="activity-item">
+        <h3>Phase 5 &mdash; Presentations &amp; Demos</h3>
+        <p>Show what you built.</p>
+        <ul>
+          <li>Short presentation (slides or live demo) covering the project's goal, approach, and results</li>
+          <li>Discuss what was parallelized, the speedup achieved, and any tradeoffs encountered</li>
+          <li>Peer Q&amp;A and feedback</li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="back-link" href="/modules">&larr; Back to Modules</a>
+  </div>
+</section>
