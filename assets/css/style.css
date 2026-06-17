@@ -1,12 +1,12 @@
 /* CSS Variables */
 :root {
-  --primary-color: #4a1d96;
-  --secondary-color: #fbbf24;
-  --accent-color: #7c3aed;
-  --text-color: #1f1f1f;
+  --primary-color: #003262;
+  --secondary-color: #fdb515;
+  --accent-color: #1565c0;
+  --text-color: #1a1a1a;
   --text-light: #555;
   --bg-color: #fff;
-  --bg-light: #f5f3ff;
+  --bg-light: #fdf7e3;
   --border-color: #e0e0e0;
   --header-height: 70px;
   --container-width: 1200px;
@@ -145,7 +145,7 @@ img {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #2d0e6e 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #001a3d 100%);
   color: white;
   padding: 80px 0;
   text-align: center;
@@ -364,8 +364,8 @@ pre code {
 }
 
 :not(pre) > code {
-  background: #ede9fe;
-  color: var(--primary-color);
+  background: #dbeafe;
+  color: var(--accent-color);
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -967,7 +967,7 @@ img.person-avatar {
 
 /* Page Header */
 .page-header {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #2d0e6e 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #001a3d 100%);
   color: white;
   padding: 50px 0;
   margin-bottom: 40px;
