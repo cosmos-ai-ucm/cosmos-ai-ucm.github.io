@@ -1,14 +1,14 @@
-title: COSMOS AI @ UC Merced
-description: Course modules for the UC Merced COSMOS Artificial Intelligence cluster
+title: COSMOS AI at Scale @ UC Merced
+description: Course modules for the UC Merced COSMOS AI at Scale cluster
 url: "https://cosmos-ai-ucm.github.io"
 baseurl: ""
 
 # Program info
-program_name: COSMOS AI
-program_full_name: California State Summer School for Mathematics and Science — Artificial Intelligence Cluster
+program_name: COSMOS AI at Scale
+program_full_name: California State Summer School for Mathematics and Science — AI at Scale Cluster
 university: University of California, Merced
 department: Computer Science and Engineering
-email: rossgreer@ucmerced.edu
+email: dli35@ucmerced.edu
 address: "5200 North Lake Rd, Merced, CA 95343"
 
 # Build settings
