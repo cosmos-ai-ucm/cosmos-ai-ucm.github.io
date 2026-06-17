@@ -14,78 +14,228 @@ title: Foundations
   <div class="container">
     <h2 class="section-title">Overview</h2>
     <p>
-      This module builds the toolkit that every other module relies on. Students learn to wrangle data with NumPy
-      and Pandas, train classic machine learning models with scikit-learn, build a simple neural network in a deep
-      learning framework, and &mdash; just as importantly &mdash; visualize and interpret what their models are
-      actually doing.
+      This module builds the toolkit every other module depends on. You&rsquo;ll wrangle data with NumPy and Pandas,
+      visualize it, train classical ML models with scikit-learn, then meet your first neural network &mdash; a recurrent
+      one &mdash; using an interactive notebook from the <em>Deep and Shallow</em> course. By the end of Week 1,
+      you&rsquo;ll know what a neural network is doing and have run one yourself. Meng&rsquo;s Week 2 then goes deeper on
+      each architecture (CNNs, LSTMs, Transformers) with that foundation already in place.
     </p>
 
     <h2 class="section-title" style="margin-top:40px;">Learning Objectives</h2>
-    <ul style="margin-left: 20px;">
-      <li>Load, clean, and manipulate datasets with NumPy and Pandas</li>
-      <li>Explore data visually using Matplotlib / Seaborn</li>
-      <li>Train and evaluate a classification model with scikit-learn</li>
-      <li>Train and evaluate a regression model with scikit-learn</li>
-      <li>Build and train a simple neural network with a deep learning framework (PyTorch)</li>
-      <li>Visualize and interpret model behavior: loss curves, decision boundaries, confusion matrices, and learned representations</li>
+    <ul style="margin-left:20px;line-height:2;">
+      <li>Load, clean, and manipulate tabular datasets with NumPy and Pandas</li>
+      <li>Explore data visually with Matplotlib / Seaborn</li>
+      <li>Train and evaluate classification and regression models with scikit-learn</li>
+      <li>Understand the agent&ndash;network&ndash;loss&ndash;optimizer loop that powers every neural network</li>
+      <li>Run a real RNN notebook that generates music &mdash; and read the code to understand it</li>
+      <li>Visualize and interpret model behavior: loss curves, confusion matrices, learned representations</li>
     </ul>
+  </div>
+</section>
 
-    <h2 class="section-title" style="margin-top:40px;">Day-by-Day Activities</h2>
+<section>
+  <div class="container">
+    <h2 class="section-title">Day-by-Day Activities</h2>
+
     <div class="activity-list">
+
+      <!-- DAY 1 -->
       <div class="activity-item">
         <h3>Day 1 (Jul 5) &mdash; Python for Data Science</h3>
-        <p>Get hands-on with NumPy arrays and Pandas DataFrames using a real-world dataset (e.g., Palmer Penguins or California Housing).</p>
-        <ul>
-          <li>Array operations, broadcasting, and vectorization in NumPy</li>
-          <li>Loading, filtering, grouping, and joining data in Pandas</li>
-          <li>Mini-challenge: answer a set of data questions using only vectorized operations (no loops!)</li>
+        <p>Get hands-on with the two libraries you&rsquo;ll use every day: NumPy (for fast numerical operations) and Pandas (for structured data). We load a real dataset and ask it questions.</p>
+
+        <h4 style="margin-top:16px;color:var(--accent-color);">Try it</h4>
+        <pre><code>import numpy as np
+import pandas as pd
+
+# Load the Palmer Penguins dataset
+df = pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/penguins.csv")
+
+print(df.head())
+print(df.describe())
+
+# How many penguins of each species?
+print(df["species"].value_counts())
+
+# Mean bill length by species — no loop needed
+print(df.groupby("species")["bill_length_mm"].mean())</code></pre>
+
+        <ul style="margin-top:12px;">
+          <li>Mini-challenge: find the heaviest penguin on each island using only vectorized operations (no <code>for</code> loops)</li>
+          <li>Extension: swap in the California Housing dataset and explore features that predict house price</li>
         </ul>
       </div>
+
+      <!-- DAY 2 -->
       <div class="activity-item">
         <h3>Day 2 (Jul 6) &mdash; Exploratory Data Analysis &amp; Visualization</h3>
-        <p>Turn raw data into insight with plots.</p>
-        <ul>
-          <li>Histograms, scatter plots, and pair plots with Matplotlib/Seaborn</li>
-          <li>Spotting correlations, outliers, and class imbalance</li>
-          <li>Mini-challenge: produce a "data story" &mdash; three plots that reveal something interesting about a dataset</li>
+        <p>A plot can reveal what a table hides. We turn the same data into a visual story using Matplotlib and Seaborn.</p>
+
+        <pre><code>import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = sns.load_dataset("penguins").dropna()
+
+# Scatter: bill length vs. depth, colored by species
+sns.scatterplot(data=df, x="bill_length_mm", y="bill_depth_mm", hue="species")
+plt.title("Bill dimensions by species")
+plt.tight_layout()
+plt.show()
+
+# Distribution of flipper length
+sns.histplot(data=df, x="flipper_length_mm", hue="species", kde=True)
+plt.show()
+
+# Correlation heatmap
+sns.heatmap(df.select_dtypes("number").corr(), annot=True, cmap="coolwarm")
+plt.show()</code></pre>
+
+        <ul style="margin-top:12px;">
+          <li>Mini-challenge: produce three plots that tell a clear story about one feature of the dataset. What would you tell someone who had never seen this data?</li>
+          <li>Discussion: what makes a plot misleading? Look at one example together.</li>
         </ul>
       </div>
+
+      <!-- DAY 3 -->
       <div class="activity-item">
         <h3>Day 3 (Jul 7) &mdash; Classification with scikit-learn</h3>
-        <p>Train models that sort data into categories.</p>
-        <ul>
-          <li>k-Nearest Neighbors, decision trees, and logistic regression on a labeled dataset (e.g., handwritten digits)</li>
-          <li>Train/test splits, accuracy, and confusion matrices</li>
-          <li>Mini-challenge: tune one hyperparameter and explain how it changes the confusion matrix</li>
+        <p>Train a model that sorts data into categories. We compare several classifiers, evaluate them honestly, and look at where they fail.</p>
+
+        <pre><code>from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report, ConfusionMatrixDisplay
+
+X, y = load_digits(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test  = scaler.transform(X_test)
+
+model = KNeighborsClassifier(n_neighbors=5)
+model.fit(X_train, y_train)
+
+print(classification_report(y_test, model.predict(X_test)))
+ConfusionMatrixDisplay.from_estimator(model, X_test, y_test)
+plt.show()</code></pre>
+
+        <ul style="margin-top:12px;">
+          <li>Mini-challenge: try <code>n_neighbors=1</code>, <code>5</code>, and <code>20</code>. How does the confusion matrix change? Which digits get confused most often?</li>
+          <li>Extension: swap in a <code>DecisionTreeClassifier</code> or <code>LogisticRegression</code> and compare accuracy</li>
         </ul>
       </div>
+
+      <!-- DAY 4 -->
       <div class="activity-item">
         <h3>Day 4 (Jul 8) &mdash; Regression with scikit-learn</h3>
-        <p>Train models that predict continuous values.</p>
-        <ul>
-          <li>Linear regression and decision-tree regression on a real dataset (e.g., housing prices)</li>
-          <li>Evaluating with mean squared error and R&sup2;</li>
-          <li>Visualizing predicted vs. actual values and residuals</li>
+        <p>When the answer is a number (not a category), we use regression. We predict housing prices and look at where our model is overconfident.</p>
+
+        <pre><code>from sklearn.datasets import fetch_california_housing
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+
+X, y = fetch_california_housing(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+for name, model in [("Linear", LinearRegression()), ("Tree", DecisionTreeRegressor(max_depth=5))]:
+    model.fit(X_train, y_train)
+    preds = model.predict(X_test)
+    print(f"{name}  RMSE={mean_squared_error(y_test, preds)**0.5:.3f}  R²={r2_score(y_test, preds):.3f}")
+
+# Visualize predictions vs. actual
+plt.scatter(y_test, preds, alpha=0.3)
+plt.xlabel("Actual price"); plt.ylabel("Predicted price")
+plt.axline((0,0), slope=1, color="red", linestyle="--")
+plt.show()</code></pre>
+
+        <ul style="margin-top:12px;">
+          <li>Mini-challenge: look at the residual plot. Where does the model over-predict? Under-predict? Why might that be?</li>
+          <li>Discussion: what is R&sup2;, and why is a high R&sup2; on training data not the whole story?</li>
         </ul>
       </div>
+
+      <!-- DAY 5 -->
       <div class="activity-item">
-        <h3>Day 5 (Jul 9) &mdash; Intro to a Deep Learning Framework</h3>
-        <p>Build your first neural network from scratch using PyTorch.</p>
-        <ul>
-          <li>Tensors, layers, loss functions, and optimizers</li>
-          <li>Train a small multilayer perceptron on an image dataset (e.g., MNIST or Fashion-MNIST)</li>
-          <li>Compare the neural network's accuracy to Day 3's classical models</li>
+        <h3>Day 5 (Jul 9) &mdash; Hello World with an RNN</h3>
+        <p>
+          Your first real neural network is a <em>recurrent</em> one. We use the
+          <strong><a href="https://github.com/rossgreer/ML4Music-HW/blob/main/RNN%20MIDI%20Generation.ipynb"
+            target="_blank" rel="noopener">RNN MIDI Generation</a></strong>
+          notebook from the <em>Deep and Shallow: Machine Learning in Music and Audio</em> course. The RNN learns
+          patterns in musical sequences and generates new melodies &mdash; a concrete, listenable output that makes
+          the abstract concept of sequence modeling immediately tangible.
+        </p>
+        <p style="margin-top:10px;">
+          <a class="colab-link"
+             href="https://colab.research.google.com/github/rossgreer/ML4Music-HW/blob/main/RNN%20MIDI%20Generation.ipynb"
+             target="_blank" rel="noopener">
+            &#9654; Open in Google Colab
+          </a>
+        </p>
+
+        <h4 style="margin-top:20px;color:var(--accent-color);">What we focus on in the notebook</h4>
+        <pre><code># The core RNN loop — three lines that define recurrence:
+#   hidden_state = f(input, previous_hidden_state)
+#   output       = g(hidden_state)
+
+# In PyTorch:
+import torch.nn as nn
+
+class SimpleRNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super().__init__()
+        self.rnn  = nn.RNN(input_size, hidden_size, batch_first=True)
+        self.head = nn.Linear(hidden_size, output_size)
+
+    def forward(self, x):
+        out, _ = self.rnn(x)
+        return self.head(out)</code></pre>
+
+        <ul style="margin-top:12px;">
+          <li>Run the notebook end-to-end: train the RNN, generate a melody, listen to the output</li>
+          <li>Trace through the code: where does the hidden state get passed forward?</li>
+          <li>Change the number of training epochs and observe how the generated melody changes</li>
+          <li>Discussion: what does "the network has learned" actually mean here?</li>
         </ul>
+        <p style="margin-top:12px;font-size:0.9rem;color:var(--text-light);">
+          <strong>Note for Week 2:</strong> With this under your belt, Meng&rsquo;s module can skip RNN basics and go straight into LSTM internals, vanishing gradients, and the attention mechanism that motivated the Transformer.
+        </p>
       </div>
+
+      <!-- DAY 6 -->
       <div class="activity-item">
         <h3>Day 6 (Jul 10) &mdash; Visualizing Model Behavior &amp; Showcase</h3>
-        <p>Open the black box and share what you've built.</p>
-        <ul>
-          <li>Plotting training/validation loss curves and diagnosing over- and under-fitting</li>
-          <li>Visualizing decision boundaries and learned feature representations (PCA / t-SNE)</li>
-          <li>Lightning talks: each student presents one plot that explains how their model "thinks"</li>
+        <p>Open the black box and share what you&rsquo;ve built this week.</p>
+
+        <pre><code>import matplotlib.pyplot as plt
+from sklearn.manifold import TSNE
+import numpy as np
+
+# Plot training vs validation loss to diagnose overfitting
+def plot_loss(train_losses, val_losses):
+    plt.plot(train_losses, label="Train")
+    plt.plot(val_losses,   label="Validation")
+    plt.xlabel("Epoch"); plt.ylabel("Loss")
+    plt.legend(); plt.title("Loss curves"); plt.show()
+
+# Visualize learned representations with t-SNE
+def plot_tsne(features, labels, n_classes):
+    coords = TSNE(n_components=2, random_state=42).fit_transform(features)
+    for c in range(n_classes):
+        mask = labels == c
+        plt.scatter(coords[mask, 0], coords[mask, 1], label=str(c), alpha=0.6)
+    plt.legend(); plt.title("t-SNE of learned features"); plt.show()</code></pre>
+
+        <ul style="margin-top:12px;">
+          <li>Apply <code>plot_loss</code> to a model you trained earlier this week &mdash; is it overfitting?</li>
+          <li>Apply <code>plot_tsne</code> to the digit classifier features &mdash; which classes cluster cleanly? Which bleed together?</li>
+          <li><strong>Lightning talks:</strong> each student presents one visualization and explains what it tells us about their model</li>
         </ul>
       </div>
+
     </div>
 
     <a class="back-link" href="/modules">&larr; Back to Modules</a>

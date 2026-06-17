@@ -14,49 +14,54 @@ title: CNNs, RNNs, Transformers & LLMs
   <div class="container">
     <h2 class="section-title">Overview</h2>
     <p>
-      This module is a tour of the architectures behind modern AI: convolutional neural networks for images,
-      recurrent neural networks for sequences, and the transformer architecture that underlies today's large
-      language models. Each day pairs a core architectural idea with a hands-on notebook.
+      Coming into this module, you&rsquo;ve already run an RNN and seen what a hidden state does
+      (Week 1, Day 5). Now we go deeper: how CNNs extract spatial structure from images, why LSTMs
+      solve the vanishing-gradient problem that plain RNNs hit, and how the attention mechanism at
+      the heart of Transformers changed everything. Day 3 ends with hands-on use of a real pretrained
+      large language model.
     </p>
 
     <h2 class="section-title" style="margin-top:40px;">Learning Objectives</h2>
     <ul style="margin-left: 20px;">
-      <li>Explain how convolution and pooling layers extract spatial features from images</li>
-      <li>Train a CNN image classifier and visualize learned filters and feature maps</li>
-      <li>Explain how recurrence allows networks to process sequential data</li>
-      <li>Train a simple RNN for a sequence task (text or time series)</li>
-      <li>Explain the self-attention mechanism and why transformers replaced RNNs for many tasks</li>
-      <li>Use a pretrained large language model and practice basic prompt engineering</li>
+      <li>Explain convolution and pooling and train a CNN image classifier from scratch</li>
+      <li>Visualize learned convolutional filters and intermediate feature maps</li>
+      <li>Explain the vanishing gradient problem and how LSTM / GRU gates address it</li>
+      <li>Train an LSTM on a sequence task and compare it to the Week 1 plain RNN</li>
+      <li>Derive the self-attention formula and explain why it replaced recurrence for most sequence tasks</li>
+      <li>Load a pretrained transformer with Hugging Face and practice prompt engineering</li>
     </ul>
 
     <h2 class="section-title" style="margin-top:40px;">Day-by-Day Activities</h2>
     <div class="activity-list">
       <div class="activity-item">
         <h3>Day 1 (Jul 13) &mdash; Convolutional Neural Networks</h3>
-        <p>How do machines "see" images?</p>
+        <p>How do machines &ldquo;see&rdquo; images? We go from a raw pixel grid to a classifier, then open the lid to see what each layer learned.</p>
         <ul>
-          <li>Convolution and pooling: build intuition with interactive filter demos</li>
-          <li>Train a small CNN image classifier (e.g., CIFAR-10)</li>
-          <li>Visualize learned convolutional filters and intermediate feature maps</li>
+          <li>Build intuition: apply kernels by hand to a tiny image (edge detection, blur, sharpen)</li>
+          <li>Train a CNN on CIFAR-10; compare accuracy to a plain MLP on the same task</li>
+          <li>Visualize learned filters in the first conv layer and feature maps at each stage</li>
+          <li>Grad-CAM: highlight which image regions drove the prediction</li>
         </ul>
       </div>
       <div class="activity-item">
-        <h3>Day 2 (Jul 14) &mdash; Recurrent Neural Networks</h3>
-        <p>How do machines handle sequences and memory?</p>
+        <h3>Day 2 (Jul 14) &mdash; LSTMs &amp; the Vanishing Gradient Problem</h3>
+        <p>You ran an RNN in Week 1 &mdash; today we break it on a long sequence and fix it with an LSTM.</p>
         <ul>
-          <li>Step through an RNN cell by hand on a tiny sequence</li>
-          <li>Train a simple RNN/LSTM for character-level text generation or time-series forecasting</li>
-          <li>Compare generated sequences before and after training</li>
+          <li>Demonstrate vanishing gradients: train a plain RNN to recall information from 50 steps ago; watch it fail</li>
+          <li>Introduce the LSTM cell: forget gate, input gate, output gate &mdash; draw the diagram and trace a single step</li>
+          <li>Train an LSTM on the same task and compare learning curves</li>
+          <li>Extension: GRU as a lighter alternative; compare parameter counts</li>
         </ul>
       </div>
       <div class="activity-item">
-        <h3>Day 3 (Jul 15) &mdash; Transformers &amp; an Introduction to LLMs</h3>
-        <p>From attention to chatbots.</p>
+        <h3>Day 3 (Jul 15) &mdash; Transformers &amp; LLMs</h3>
+        <p>From attention to chatbots &mdash; hands-on the architecture that runs the AI world right now.</p>
         <ul>
-          <li>Visualize self-attention weights on a short sentence</li>
-          <li>Load a small pretrained transformer with Hugging Face and run inference</li>
-          <li>Prompt engineering basics: zero-shot vs. few-shot prompts, and how wording changes outputs</li>
-          <li>Group discussion: what can &mdash; and can't &mdash; today's LLMs do well?</li>
+          <li>Derive scaled dot-product attention: <code>Attention(Q,K,V) = softmax(QKᵀ/√d)V</code></li>
+          <li>Visualize multi-head attention weights on a sentence: which tokens attend to which?</li>
+          <li>Load a small pretrained transformer with Hugging Face (<code>transformers</code> library) and run text generation</li>
+          <li>Prompt engineering: zero-shot vs. few-shot, chain-of-thought, and how framing changes outputs</li>
+          <li>Discussion: what can &mdash; and can&rsquo;t &mdash; today&rsquo;s LLMs do reliably?</li>
         </ul>
       </div>
     </div>

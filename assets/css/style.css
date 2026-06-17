@@ -1,12 +1,12 @@
 /* CSS Variables */
 :root {
-  --primary-color: #003366;
-  --secondary-color: #f4b41a;
-  --accent-color: #0066cc;
-  --text-color: #333;
-  --text-light: #666;
+  --primary-color: #4a1d96;
+  --secondary-color: #fbbf24;
+  --accent-color: #7c3aed;
+  --text-color: #1f1f1f;
+  --text-light: #555;
   --bg-color: #fff;
-  --bg-light: #f8f9fa;
+  --bg-light: #f5f3ff;
   --border-color: #e0e0e0;
   --header-height: 70px;
   --container-width: 1200px;
@@ -145,7 +145,7 @@ img {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004080 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #2d0e6e 100%);
   color: white;
   padding: 80px 0;
   text-align: center;
@@ -337,6 +337,56 @@ section:nth-child(even) {
   display: inline-block;
   margin-top: 30px;
   font-weight: 500;
+}
+
+/* Code Blocks */
+pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 10px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 16px 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+code {
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 0.9em;
+}
+
+pre code {
+  font-size: inherit;
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+:not(pre) > code {
+  background: #ede9fe;
+  color: var(--primary-color);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.colab-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f9ab00;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin-top: 12px;
+  transition: background var(--transition);
+}
+
+.colab-link:hover {
+  background: #e09b00;
+  color: #1a1a1a;
 }
 
 /* Applications */
@@ -917,7 +967,7 @@ img.person-avatar {
 
 /* Page Header */
 .page-header {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004080 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #2d0e6e 100%);
   color: white;
   padding: 50px 0;
   margin-bottom: 40px;
