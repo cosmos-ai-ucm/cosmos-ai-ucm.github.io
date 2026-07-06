@@ -69,18 +69,28 @@ title: Foundations
 
 <section class="about">
   <div class="container">
-    <h2 class="section-title">Video Playlist</h2>
-    <p>A curated set of videos to watch before or alongside the module.</p>
+    <h2 class="section-title">Video Playlists</h2>
+    <p>Curated sets of videos to watch before or alongside the module.</p>
+
+    <h3 style="margin-top:30px;color:var(--primary-color);">Set 1 &mdash; Modern AI: The Advent of LLMs</h3>
     <div class="video-grid">
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/2s3aJfRr9gE" title="Video 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/PtmzfpV6CDE" title="Video 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/d9alWZRzBWk" title="Video 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/tIeHLnjs5U8" title="Video 4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/Ilg3gGewQ5U" title="Video 5" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/aircAruvnKk" title="Video 6" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/9-Jl0dxWQs8" title="Video 7" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/LPZh9BOjkQs" title="Video 8" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/l6DKRf-fAAM" title="Video 9" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="video-embed"><iframe src="https://www.youtube.com/embed/LPZh9BOjkQs" title="Large Language Models explained briefly" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="video-embed"><iframe src="https://www.youtube.com/embed/9-Jl0dxWQs8" title="How might LLMs store facts | Deep Learning Chapter 7" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    </div>
+
+    <h3 style="margin-top:40px;color:var(--primary-color);">Set 2 &mdash; Neural Network Basics</h3>
+    <div class="video-grid">
+      <div class="video-embed"><iframe src="https://www.youtube.com/embed/aircAruvnKk" title="But what is a neural network? | Deep learning chapter 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="video-embed"><iframe src="https://www.youtube.com/embed/Ilg3gGewQ5U" title="Backpropagation, intuitively | Deep Learning Chapter 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="video-embed"><iframe src="https://www.youtube.com/embed/tIeHLnjs5U8" title="Backpropagation calculus | Deep Learning Chapter 4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    </div>
+
+    <h3 style="margin-top:40px;color:var(--primary-color);">Set 3 &mdash; Information Theory and Machine Learning</h3>
+    <div class="video-grid">
+      <div class="video-embed"><iframe src="https://www.youtube.com/embed/d9alWZRzBWk" title="What is information theory? | Khan Academy" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="video-embed"><iframe src="https://www.youtube.com/embed/2s3aJfRr9gE" title="Information entropy | Khan Academy" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="video-embed"><iframe src="https://www.youtube.com/embed/PtmzfpV6CDE" title="Measuring information | Khan Academy" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="video-embed"><iframe src="https://www.youtube.com/embed/l6DKRf-fAAM" title="Reinventing Entropy | Compression is Intelligence Part 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
     </div>
   </div>
 </section>
@@ -250,6 +260,31 @@ class SimpleRNN(nn.Module):
           <li>Trace through the code: where does the hidden state get passed forward?</li>
           <li>Change the number of training epochs and observe how the generated melody changes</li>
           <li>Discussion: what does "the network has learned" actually mean here?</li>
+        </ul>
+      </div>
+
+      <!-- LAB: LINEAR AUTOENCODER -->
+      <div class="activity-item">
+        <h3>Lab &mdash; Linear Autoencoder</h3>
+        <p>
+          Another interactive notebook from the <em>Deep and Shallow</em> course.
+          <strong><a href="https://github.com/deep-and-shallow/notebooks/blob/main/notebooks/PCA%20with%20Linear%20Autoencoder.ipynb"
+            target="_blank" rel="noopener">PCA with Linear Autoencoder</a></strong>
+          connects classical dimensionality reduction to a small neural network you can train
+          yourself, and sets up the intuition for the information-theory session.
+        </p>
+        <p style="margin-top:10px;">
+          <a class="colab-link"
+             href="https://colab.research.google.com/github/deep-and-shallow/notebooks/blob/main/notebooks/PCA%20with%20Linear%20Autoencoder.ipynb"
+             target="_blank" rel="noopener">
+            &#9654; Open in Google Colab
+          </a>
+        </p>
+
+        <ul style="margin-top:12px;">
+          <li>Run the notebook end-to-end and compare the linear-autoencoder reconstruction to a PCA baseline</li>
+          <li>Change the bottleneck size and observe how much information the encoder can keep</li>
+          <li>Discussion: what does the &ldquo;code&rdquo; layer represent, and why is it interesting for compression &amp; information theory?</li>
         </ul>
       </div>
 
