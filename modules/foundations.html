@@ -161,7 +161,6 @@ plt.show()</code></pre>
 
         <ul style="margin-top:12px;">
           <li>Mini-challenge: produce three plots that tell a clear story about one feature of the dataset. What would you tell someone who had never seen this data?</li>
-          <li>Discussion: what makes a plot misleading? Look at one example together.</li>
         </ul>
       </div>
 
@@ -193,6 +192,36 @@ plt.show()</code></pre>
         <ul style="margin-top:12px;">
           <li>Mini-challenge: try <code>n_neighbors=1</code>, <code>5</code>, and <code>20</code>. How does the confusion matrix change? Which digits get confused most often?</li>
           <li>Extension: swap in a <code>DecisionTreeClassifier</code> or <code>LogisticRegression</code> and compare accuracy</li>
+        </ul>
+      </div>
+
+      <!-- Visualizing Model Behavior -->
+      <div class="activity-item">
+        <h3>Visualizing Model Behavior</h3>
+        <p>Open the black box: look at learning curves and learned representations to see what a trained model is actually doing.</p>
+
+        <pre><code>import matplotlib.pyplot as plt
+from sklearn.manifold import TSNE
+import numpy as np
+
+# Plot training vs validation loss to diagnose overfitting
+def plot_loss(train_losses, val_losses):
+    plt.plot(train_losses, label="Train")
+    plt.plot(val_losses,   label="Validation")
+    plt.xlabel("Epoch"); plt.ylabel("Loss")
+    plt.legend(); plt.title("Loss curves"); plt.show()
+
+# Visualize learned representations with t-SNE
+def plot_tsne(features, labels, n_classes):
+    coords = TSNE(n_components=2, random_state=42).fit_transform(features)
+    for c in range(n_classes):
+        mask = labels == c
+        plt.scatter(coords[mask, 0], coords[mask, 1], label=str(c), alpha=0.6)
+    plt.legend(); plt.title("t-SNE of learned features"); plt.show()</code></pre>
+
+        <ul style="margin-top:12px;">
+          <li>Apply <code>plot_loss</code> to a model you&rsquo;ve trained &mdash; is it overfitting?</li>
+          <li>Apply <code>plot_tsne</code> to the digit classifier features &mdash; which classes cluster cleanly? Which bleed together?</li>
         </ul>
       </div>
 
@@ -242,8 +271,9 @@ plt.show()</code></pre>
           Your first real neural network is a <em>recurrent</em> one. We use the
           <strong><a href="https://github.com/deep-and-shallow/notebooks/blob/main/notebooks/FirstRNN.ipynb"
             target="_blank" rel="noopener">FirstRNN</a></strong> notebook from the
-          <em>Deep and Shallow: Machine Learning in Music and Audio</em> course &mdash; a hands-on introduction
-          that makes the abstract concept of sequence modeling immediately tangible.
+          <em>Deep and Shallow: Machine Learning in Music and Audio</em> book (also linked on the
+          <a href="/resources">Resources page</a>) &mdash; a hands-on introduction that makes the
+          abstract concept of sequence modeling immediately tangible.
         </p>
         <p style="margin-top:10px;">
           <a class="colab-link"
@@ -272,9 +302,9 @@ class SimpleRNN(nn.Module):
         return self.head(out)</code></pre>
 
         <ul style="margin-top:12px;">
-          <li>Run the notebook end-to-end: train the RNN, generate a melody, listen to the output</li>
+          <li>Run the notebook end-to-end: train the RNN and watch it output the letters of HELLO WORLD</li>
           <li>Trace through the code: where does the hidden state get passed forward?</li>
-          <li>Change the number of training epochs and observe how the generated melody changes</li>
+          <li>Change the number of training epochs and observe how the generated sequence changes</li>
           <li>Discussion: what does "the network has learned" actually mean here?</li>
         </ul>
       </div>
@@ -311,37 +341,6 @@ class SimpleRNN(nn.Module):
           <li>Run the notebook end-to-end and compare the linear-autoencoder reconstruction to a PCA baseline</li>
           <li>Change the bottleneck size and observe how much information the encoder can keep</li>
           <li>Discussion: what does the &ldquo;code&rdquo; layer represent, and why is it interesting for compression &amp; information theory?</li>
-        </ul>
-      </div>
-
-      <!-- Visualizing Model Behavior & Showcase -->
-      <div class="activity-item">
-        <h3>Visualizing Model Behavior &amp; Showcase</h3>
-        <p>Open the black box and share what you&rsquo;ve built this week.</p>
-
-        <pre><code>import matplotlib.pyplot as plt
-from sklearn.manifold import TSNE
-import numpy as np
-
-# Plot training vs validation loss to diagnose overfitting
-def plot_loss(train_losses, val_losses):
-    plt.plot(train_losses, label="Train")
-    plt.plot(val_losses,   label="Validation")
-    plt.xlabel("Epoch"); plt.ylabel("Loss")
-    plt.legend(); plt.title("Loss curves"); plt.show()
-
-# Visualize learned representations with t-SNE
-def plot_tsne(features, labels, n_classes):
-    coords = TSNE(n_components=2, random_state=42).fit_transform(features)
-    for c in range(n_classes):
-        mask = labels == c
-        plt.scatter(coords[mask, 0], coords[mask, 1], label=str(c), alpha=0.6)
-    plt.legend(); plt.title("t-SNE of learned features"); plt.show()</code></pre>
-
-        <ul style="margin-top:12px;">
-          <li>Apply <code>plot_loss</code> to a model you trained earlier this week &mdash; is it overfitting?</li>
-          <li>Apply <code>plot_tsne</code> to the digit classifier features &mdash; which classes cluster cleanly? Which bleed together?</li>
-          <li><strong>Lightning talks:</strong> each student presents one visualization and explains what it tells us about their model</li>
         </ul>
       </div>
 
