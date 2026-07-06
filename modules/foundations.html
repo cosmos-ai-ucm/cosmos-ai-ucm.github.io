@@ -95,41 +95,25 @@ title: Foundations
 
 <section class="about">
   <div class="container">
-    <h2 class="section-title">Video Playlists</h2>
-    <p>Curated sets of videos to watch before or alongside the module.</p>
-
-    <h3 style="margin-top:30px;color:var(--primary-color);">Set 1 &mdash; Modern AI: The Advent of LLMs</h3>
-    <div class="video-grid">
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/LPZh9BOjkQs" title="Large Language Models explained briefly" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/9-Jl0dxWQs8" title="How might LLMs store facts | Deep Learning Chapter 7" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-    </div>
-
-    <h3 style="margin-top:40px;color:var(--primary-color);">Set 2 &mdash; Neural Network Basics</h3>
-    <div class="video-grid">
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/aircAruvnKk" title="But what is a neural network? | Deep learning chapter 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/Ilg3gGewQ5U" title="Backpropagation, intuitively | Deep Learning Chapter 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/tIeHLnjs5U8" title="Backpropagation calculus | Deep Learning Chapter 4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-    </div>
-
-    <h3 style="margin-top:40px;color:var(--primary-color);">Set 3 &mdash; Information Theory and Machine Learning</h3>
-    <div class="video-grid">
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/d9alWZRzBWk" title="What is information theory? | Khan Academy" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/2s3aJfRr9gE" title="Information entropy | Khan Academy" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/PtmzfpV6CDE" title="Measuring information | Khan Academy" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="video-embed"><iframe src="https://www.youtube.com/embed/l6DKRf-fAAM" title="Reinventing Entropy | Compression is Intelligence Part 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <h2 class="section-title">Day-by-Day Activities</h2>
+    <h2 class="section-title">Sessions</h2>
+    <p>
+      A linear sequence we&rsquo;ll work through at whatever pace the course naturally flows.
+      Video sets are placed near the sessions they set up.
+    </p>
 
     <div class="activity-list">
 
-      <!-- DAY 1 -->
-      <div class="activity-item">
-        <h3>Day 1 (Jul 5) &mdash; Python for Data Science</h3>
+      <!-- SET 1: LLMs (intro to modern AI) -->
+      <h3 style="margin-top:20px;color:var(--primary-color);">Set 1 &mdash; Modern AI: The Advent of LLMs</h3>
+      <p style="margin-top:-6px;color:var(--text-light);">A quick tour of where AI stands right now, as an entry point to the week.</p>
+      <div class="video-grid">
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/LPZh9BOjkQs" title="Large Language Models explained briefly" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/9-Jl0dxWQs8" title="How might LLMs store facts | Deep Learning Chapter 7" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+
+      <!-- Python for Data Science -->
+      <div class="activity-item" style="margin-top:30px;">
+        <h3>Python for Data Science</h3>
         <p>Get hands-on with the two libraries you&rsquo;ll use every day: NumPy (for fast numerical operations) and Pandas (for structured data). We load a real dataset and ask it questions.</p>
 
         <h4 style="margin-top:16px;color:var(--accent-color);">Try it</h4>
@@ -154,9 +138,9 @@ print(df.groupby("species")["bill_length_mm"].mean())</code></pre>
         </ul>
       </div>
 
-      <!-- DAY 2 -->
+      <!-- EDA & Visualization -->
       <div class="activity-item">
-        <h3>Day 2 (Jul 6) &mdash; Exploratory Data Analysis &amp; Visualization</h3>
+        <h3>Exploratory Data Analysis &amp; Visualization</h3>
         <p>A plot can reveal what a table hides. We turn the same data into a visual story using Matplotlib and Seaborn.</p>
 
         <pre><code>import seaborn as sns
@@ -184,9 +168,9 @@ plt.show()</code></pre>
         </ul>
       </div>
 
-      <!-- DAY 3 -->
+      <!-- Classification -->
       <div class="activity-item">
-        <h3>Day 3 (Jul 7) &mdash; Classification with scikit-learn</h3>
+        <h3>Classification with scikit-learn</h3>
         <p>Train a model that sorts data into categories. We compare several classifiers, evaluate them honestly, and look at where they fail.</p>
 
         <pre><code>from sklearn.datasets import load_digits
@@ -215,9 +199,9 @@ plt.show()</code></pre>
         </ul>
       </div>
 
-      <!-- DAY 4 -->
+      <!-- Regression -->
       <div class="activity-item">
-        <h3>Day 4 (Jul 8) &mdash; Regression with scikit-learn</h3>
+        <h3>Regression with scikit-learn</h3>
         <p>When the answer is a number (not a category), we use regression. We predict housing prices and look at where our model is overconfident.</p>
 
         <pre><code>from sklearn.datasets import fetch_california_housing
@@ -245,9 +229,18 @@ plt.show()</code></pre>
         </ul>
       </div>
 
-      <!-- DAY 5 -->
-      <div class="activity-item">
-        <h3>Day 5 (Jul 9) &mdash; Hello World with an RNN</h3>
+      <!-- SET 2: Neural Network Basics -->
+      <h3 style="margin-top:40px;color:var(--primary-color);">Set 2 &mdash; Neural Network Basics</h3>
+      <p style="margin-top:-6px;color:var(--text-light);">Setup for our first neural network run.</p>
+      <div class="video-grid">
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/aircAruvnKk" title="But what is a neural network? | Deep learning chapter 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/Ilg3gGewQ5U" title="Backpropagation, intuitively | Deep Learning Chapter 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/tIeHLnjs5U8" title="Backpropagation calculus | Deep Learning Chapter 4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+
+      <!-- Hello World with an RNN -->
+      <div class="activity-item" style="margin-top:30px;">
+        <h3>Hello World with an RNN</h3>
         <p>
           Your first real neural network is a <em>recurrent</em> one. We use the
           <strong><a href="https://github.com/deep-and-shallow/notebooks/blob/main/notebooks/FirstRNN.ipynb"
@@ -289,8 +282,18 @@ class SimpleRNN(nn.Module):
         </ul>
       </div>
 
-      <!-- LAB: LINEAR AUTOENCODER -->
-      <div class="activity-item">
+      <!-- SET 3: Info Theory & ML -->
+      <h3 style="margin-top:40px;color:var(--primary-color);">Set 3 &mdash; Information Theory and Machine Learning</h3>
+      <p style="margin-top:-6px;color:var(--text-light);">Framing for the autoencoder session and the Shannon throughline.</p>
+      <div class="video-grid">
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/d9alWZRzBWk" title="What is information theory? | Khan Academy" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/2s3aJfRr9gE" title="Information entropy | Khan Academy" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/PtmzfpV6CDE" title="Measuring information | Khan Academy" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/l6DKRf-fAAM" title="Reinventing Entropy | Compression is Intelligence Part 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+
+      <!-- Lab: Linear Autoencoder -->
+      <div class="activity-item" style="margin-top:30px;">
         <h3>Lab &mdash; Linear Autoencoder</h3>
         <p>
           Another interactive notebook from the <em>Deep and Shallow</em> course.
@@ -314,9 +317,9 @@ class SimpleRNN(nn.Module):
         </ul>
       </div>
 
-      <!-- DAY 6 -->
+      <!-- Visualizing Model Behavior & Showcase -->
       <div class="activity-item">
-        <h3>Day 6 (Jul 10) &mdash; Visualizing Model Behavior &amp; Showcase</h3>
+        <h3>Visualizing Model Behavior &amp; Showcase</h3>
         <p>Open the black box and share what you&rsquo;ve built this week.</p>
 
         <pre><code>import matplotlib.pyplot as plt
