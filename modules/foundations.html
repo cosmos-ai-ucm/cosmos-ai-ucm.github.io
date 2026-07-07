@@ -195,36 +195,6 @@ plt.show()</code></pre>
         </ul>
       </div>
 
-      <!-- Visualizing Model Behavior -->
-      <div class="activity-item">
-        <h3>Visualizing Model Behavior</h3>
-        <p>Open the black box: look at learning curves and learned representations to see what a trained model is actually doing.</p>
-
-        <pre><code>import matplotlib.pyplot as plt
-from sklearn.manifold import TSNE
-import numpy as np
-
-# Plot training vs validation loss to diagnose overfitting
-def plot_loss(train_losses, val_losses):
-    plt.plot(train_losses, label="Train")
-    plt.plot(val_losses,   label="Validation")
-    plt.xlabel("Epoch"); plt.ylabel("Loss")
-    plt.legend(); plt.title("Loss curves"); plt.show()
-
-# Visualize learned representations with t-SNE
-def plot_tsne(features, labels, n_classes):
-    coords = TSNE(n_components=2, random_state=42).fit_transform(features)
-    for c in range(n_classes):
-        mask = labels == c
-        plt.scatter(coords[mask, 0], coords[mask, 1], label=str(c), alpha=0.6)
-    plt.legend(); plt.title("t-SNE of learned features"); plt.show()</code></pre>
-
-        <ul style="margin-top:12px;">
-          <li>Apply <code>plot_loss</code> to a model you&rsquo;ve trained &mdash; is it overfitting?</li>
-          <li>Apply <code>plot_tsne</code> to the digit classifier features &mdash; which classes cluster cleanly? Which bleed together?</li>
-        </ul>
-      </div>
-
       <!-- Regression -->
       <div class="activity-item">
         <h3>Regression with scikit-learn</h3>
@@ -262,6 +232,217 @@ plt.show()</code></pre>
         <div class="video-embed"><iframe src="https://www.youtube.com/embed/aircAruvnKk" title="But what is a neural network? | Deep learning chapter 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         <div class="video-embed"><iframe src="https://www.youtube.com/embed/Ilg3gGewQ5U" title="Backpropagation, intuitively | Deep Learning Chapter 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         <div class="video-embed"><iframe src="https://www.youtube.com/embed/tIeHLnjs5U8" title="Backpropagation calculus | Deep Learning Chapter 4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+
+      <!-- Visualizing Model Behavior -->
+      <div class="activity-item" style="margin-top:30px;">
+        <h3>Visualizing Model Behavior</h3>
+        <p>
+          A first PyTorch neural network on the digits dataset. We train a tiny classifier,
+          watch the loss curves during training, and use t-SNE to visualize the features the
+          middle layer has learned &mdash; a preview of the same tools we&rsquo;ll use again on
+          the RNN and the autoencoder.
+        </p>
+
+        <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.manifold import TSNE
+
+import torch
+import torch.nn as nn
+from torch.utils.data import TensorDataset, DataLoader
+
+
+# -------------------------
+# Plotting helpers
+# -------------------------
+
+def plot_loss(train_losses, val_losses):
+    plt.plot(train_losses, label="Train")
+    plt.plot(val_losses, label="Validation")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.legend()
+    plt.title("Loss curves")
+    plt.show()
+
+
+def plot_tsne(features, labels, n_classes):
+    coords = TSNE(n_components=2, random_state=42, perplexity=30).fit_transform(features)
+
+    for c in range(n_classes):
+        mask = labels == c
+        plt.scatter(coords[mask, 0], coords[mask, 1], label=str(c), alpha=0.6)
+
+    plt.legend()
+    plt.title("t-SNE of learned features")
+    plt.show()
+
+
+# -------------------------
+# Load default dataset
+# -------------------------
+
+digits = load_digits()
+
+X = digits.data          # shape: [num_samples, 64]
+y = digits.target        # labels: 0 through 9
+n_classes = 10
+
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+X_train, X_val, y_train, y_val = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+X_train = torch.tensor(X_train, dtype=torch.float32)
+y_train = torch.tensor(y_train, dtype=torch.long)
+
+X_val = torch.tensor(X_val, dtype=torch.float32)
+y_val = torch.tensor(y_val, dtype=torch.long)
+
+train_loader = DataLoader(
+    TensorDataset(X_train, y_train),
+    batch_size=64,
+    shuffle=True
+)
+
+val_loader = DataLoader(
+    TensorDataset(X_val, y_val),
+    batch_size=64,
+    shuffle=False
+)
+
+
+# -------------------------
+# Tiny neural network
+# -------------------------
+
+class SmallNet(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+        self.feature_extractor = nn.Sequential(
+            nn.Linear(64, 32),
+            nn.ReLU(),
+            nn.Linear(32, 16),
+            nn.ReLU()
+        )
+
+        self.classifier = nn.Linear(16, 10)
+
+    def forward(self, x):
+        features = self.feature_extractor(x)
+        logits = self.classifier(features)
+        return logits
+
+    def get_features(self, x):
+        return self.feature_extractor(x)
+
+
+model = SmallNet()
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+
+# -------------------------
+# Mini training loop
+# -------------------------
+
+train_losses = []
+val_losses = []
+
+for epoch in range(30):
+    model.train()
+    total_train_loss = 0
+
+    for x_batch, y_batch in train_loader:
+        optimizer.zero_grad()
+
+        logits = model(x_batch)
+        loss = criterion(logits, y_batch)
+
+        loss.backward()
+        optimizer.step()
+
+        total_train_loss += loss.item()
+
+    avg_train_loss = total_train_loss / len(train_loader)
+    train_losses.append(avg_train_loss)
+
+    model.eval()
+    total_val_loss = 0
+    correct = 0
+    total = 0
+
+    with torch.no_grad():
+        for x_batch, y_batch in val_loader:
+            logits = model(x_batch)
+            loss = criterion(logits, y_batch)
+
+            total_val_loss += loss.item()
+
+            predictions = logits.argmax(dim=1)
+            correct += (predictions == y_batch).sum().item()
+            total += y_batch.size(0)
+
+    avg_val_loss = total_val_loss / len(val_loader)
+    val_losses.append(avg_val_loss)
+
+    val_accuracy = correct / total
+
+    print(
+        f"Epoch {epoch+1:02d} | "
+        f"Train Loss: {avg_train_loss:.4f} | "
+        f"Val Loss: {avg_val_loss:.4f} | "
+        f"Val Acc: {val_accuracy:.3f}"
+    )
+
+
+# -------------------------
+# Plot loss curves
+# -------------------------
+
+plot_loss(train_losses, val_losses)
+
+
+# -------------------------
+# Extract learned features
+# -------------------------
+
+model.eval()
+features = []
+labels = []
+
+with torch.no_grad():
+    for x_batch, y_batch in val_loader:
+        batch_features = model.get_features(x_batch)
+
+        features.append(batch_features.numpy())
+        labels.append(y_batch.numpy())
+
+features = np.concatenate(features, axis=0)
+labels = np.concatenate(labels, axis=0)
+
+
+# -------------------------
+# Plot t-SNE
+# -------------------------
+
+plot_tsne(features, labels, n_classes)</code></pre>
+
+        <ul style="margin-top:12px;">
+          <li>Run the whole script end-to-end. What does the loss curve say &mdash; is the model still improving at epoch 30, plateauing, or overfitting?</li>
+          <li>Compare this t-SNE to a t-SNE of the raw <code>digits.data</code> pixels (skip the network, run t-SNE directly). Do the learned features separate the classes more cleanly?</li>
+          <li>Shrink the bottleneck: change <code>nn.Linear(32, 16)</code> to <code>nn.Linear(32, 4)</code>. Does the t-SNE degrade? Does validation accuracy drop?</li>
+          <li>Extension: pull five misclassified digits and display each with its predicted vs. true label using <code>plt.imshow(digits.images[i], cmap="gray")</code>.</li>
+          <li>Discussion: why do we t-SNE the middle-layer features rather than the classifier&rsquo;s output logits?</li>
+        </ul>
       </div>
 
       <!-- Hello World with an RNN -->
