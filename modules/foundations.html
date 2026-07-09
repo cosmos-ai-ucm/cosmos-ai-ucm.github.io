@@ -581,6 +581,71 @@ class SimpleRNN(nn.Module):
         </ul>
       </div>
 
+      <!-- SET 5: Spot-It Challenge -->
+      <h3 style="margin-top:40px;color:var(--primary-color);">Set 5 &mdash; Spot-It Challenge</h3>
+      <p style="margin-top:-6px;color:var(--text-light);">A Kaggle competition built around the Spot-It card game &mdash; every pair of cards shares exactly one symbol. Your job: build a model that finds it.</p>
+
+      <div class="activity-item" style="margin-top:30px;">
+        <h3>Spot-It: Find the Shared Symbol</h3>
+        <p>
+          Spot-It is a card game where any two cards share <em>exactly one</em> symbol. The math
+          behind that guarantee is beautiful &mdash; it comes from finite projective planes &mdash;
+          and it turns into a perfect computer-vision challenge: given two card images, can your
+          model identify the symbol they have in common? This is our capstone activity for
+          Module 1, pulling together everything from pandas and image loading through CNN
+          classification.
+        </p>
+
+        <h4 style="margin-top:16px;color:var(--accent-color);">The math behind the game</h4>
+        <p>
+          Read Colin Defant&rsquo;s
+          <a href="https://hapax.github.io/mathematics/spotit/" target="_blank" rel="noopener">
+            <em>The Math of Spot It!</em></a>
+          for the projective-plane construction that makes the &ldquo;exactly one shared symbol&rdquo;
+          property work. Understanding <em>why</em> the game is structured this way makes it much
+          easier to reason about your training data.
+        </p>
+
+        <h4 style="margin-top:16px;color:var(--accent-color);">The competition</h4>
+        <p>
+          We&rsquo;re running this as a private Kaggle competition. Sign up, read the task
+          description, download the starter data, and submit predictions to climb the leaderboard.
+        </p>
+        <p style="margin-top:10px;">
+          <a class="colab-link"
+             href="https://www.kaggle.com/competitions/spot-it-2026/data"
+             target="_blank" rel="noopener">
+            &#9654; Open the Kaggle competition
+          </a>
+        </p>
+
+        <h4 style="margin-top:16px;color:var(--accent-color);">Class examples</h4>
+        <p>
+          Reference notebook and worked examples we&rsquo;ll walk through together in class:
+        </p>
+        <p style="margin-top:10px;">
+          <a class="colab-link"
+             href="https://docs.google.com/document/d/1W1sqSK-qr_gvq-u-QDJBjE8gCUeh56V2G0Gio_YHpVs"
+             target="_blank" rel="noopener">
+            &#9654; Open the class examples doc
+          </a>
+        </p>
+
+        <h4 style="margin-top:16px;color:var(--accent-color);">Full dataset</h4>
+        <p>
+          The Kaggle page has the competition data, but the full image set (extra training cards,
+          higher resolution, more symbols) lives on UC Merced Box:
+        </p>
+        <p style="margin-top:10px;">
+          <a class="colab-link"
+             href="https://ucmerced.box.com/s/82dfvo6j74fkwuhtwo96dzmfsc1akzmp"
+             target="_blank" rel="noopener">
+            &#9654; Download the Spot-It dataset (Box)
+          </a>
+        </p>
+
+      </div>
+
     </div>
 
     <a class="back-link" href="/schedule">&larr; Back to Schedule</a>
