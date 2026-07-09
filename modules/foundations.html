@@ -525,6 +525,62 @@ class SimpleRNN(nn.Module):
         </ul>
       </div>
 
+      <!-- SET 4: Python & Data Science Practice -->
+      <h3 style="margin-top:40px;color:var(--primary-color);">Set 4 &mdash; Python &amp; Data Science Practice</h3>
+      <p style="margin-top:-6px;color:var(--text-light);">Two hands-on notebooks to solidify Python fundamentals and walk end-to-end through a real data-science pipeline.</p>
+
+      <!-- Intro to Data Structures, Files, and Data Processing -->
+      <div class="activity-item" style="margin-top:30px;">
+        <h3>Intro to Data Structures, Files, and Data Processing</h3>
+        <p>
+          A guided notebook that builds up the Python toolkit every later activity assumes: lists,
+          tuples, dictionaries, and sets; reading and writing files with <code>with open(...)</code>;
+          and a capstone that combines all of them to parse a CSV, compute summary statistics, and
+          write results back to disk. Each section ends with a small challenge you complete in the
+          notebook.
+        </p>
+        <p style="margin-top:10px;">
+          <a class="colab-link"
+             href="https://colab.research.google.com/github/cosmos-ai-ucm/cosmos-ai-ucm.github.io/blob/main/modules/intro_data_structures_files.ipynb"
+             target="_blank" rel="noopener">
+            &#9654; Open in Google Colab
+          </a>
+        </p>
+
+        <ul style="margin-top:12px;">
+          <li>Work through Sections 1&ndash;6 in order and complete each challenge before moving on</li>
+          <li>Capstone (Challenge 6): read a bookstore inventory CSV, compute total value / average price / out-of-stock titles, and write a summary file</li>
+          <li>Discussion: when would you pick a <code>list</code> vs. a <code>dict</code> vs. a <code>set</code> for the same data?</li>
+        </ul>
+      </div>
+
+      <!-- Data Science with Pandas, Images, and a Cat vs. Dog CNN -->
+      <div class="activity-item">
+        <h3>Data Science with Pandas, Images, and a Cat vs. Dog CNN</h3>
+        <p>
+          Everything from the previous notebook, scaled up to a real workflow: download a dataset
+          into Colab, open images with PIL, organize file metadata in a pandas DataFrame, resize
+          and normalize the images into arrays, then train a small CNN to classify cats vs. dogs.
+          The final challenge asks you to build the full <em>collect &rarr; inspect &rarr;
+          transform &rarr; model &rarr; evaluate</em> pipeline yourself, using the sections above
+          as reference.
+        </p>
+        <p style="margin-top:10px;">
+          <a class="colab-link"
+             href="https://colab.research.google.com/github/cosmos-ai-ucm/cosmos-ai-ucm.github.io/blob/main/modules/data_science_pandas_images_cnn.ipynb"
+             target="_blank" rel="noopener">
+            &#9654; Open in Google Colab
+          </a>
+        </p>
+
+        <ul style="margin-top:12px;">
+          <li>Run Sections 1&ndash;4 in order &mdash; download the dataset, inspect images, build a DataFrame, and prep <code>X</code>/<code>y</code> for training</li>
+          <li>Final challenge: assemble the full pipeline and train the CNN skeleton to classify cats vs. dogs, then plot training vs. validation accuracy</li>
+          <li>Show at least five test images with the model&rsquo;s predicted label vs. the true label</li>
+          <li>Reflection: did the model overfit? What in your data pipeline would you change with more time?</li>
+        </ul>
+      </div>
+
     </div>
 
     <a class="back-link" href="/schedule">&larr; Back to Schedule</a>
