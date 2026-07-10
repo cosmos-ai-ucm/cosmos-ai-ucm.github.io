@@ -646,6 +646,40 @@ class SimpleRNN(nn.Module):
 
       </div>
 
+      <!-- SET 6: Hands-On VLM -->
+      <h3 style="margin-top:40px;color:var(--primary-color);">Set 6 &mdash; Hands-On with a Real VLM</h3>
+      <p style="margin-top:-6px;color:var(--text-light);">Load and run an open-source Vision-Language Model yourself on a free Colab GPU &mdash; then measure the speed/quality trade-off that motivates edge AI.</p>
+
+      <div class="activity-item" style="margin-top:30px;">
+        <h3>Talking to a Real VLM: Running an Open-Source Vision-Language Model</h3>
+        <p>
+          In lecture we looked at closed, cloud-hosted VLMs (GPT-4V, Gemini, Claude) from the outside.
+          In this notebook you load and run a real, open-source VLM yourself &mdash;
+          <strong>SmolVLM2 (2.2B parameters)</strong> from Hugging Face &mdash; on a free Colab GPU.
+          You'll see every stage of the <em>image &rarr; vision encoder &rarr; tokens &rarr; language
+          model &rarr; answer</em> pipeline actually run, ask the model your own questions about your
+          own photos, measure how many tokens/second it produces, and then compare it against a
+          <strong>256M-parameter</strong> version of the same model family to see the size/speed
+          trade-off from the Edge AI lecture in action.
+        </p>
+        <p style="margin-top:10px;">
+          <a class="colab-link"
+             href="https://colab.research.google.com/github/cosmos-ai-ucm/cosmos-ai-ucm.github.io/blob/main/modules/vlm_hands_on.ipynb"
+             target="_blank" rel="noopener">
+            &#9654; Open in Google Colab
+          </a>
+        </p>
+
+        <ul style="margin-top:12px;">
+          <li>Turn on a T4 GPU in Colab, then run Sections 1&ndash;5 to load SmolVLM2 and ask it about a sample image</li>
+          <li>Challenge 2: write three of your own questions about <code>street_scene.jpg</code>, including one that requires counting or comparing</li>
+          <li>Section 7: upload one of your own photos and ask the model about it</li>
+          <li>Challenge 3: use <code>timed_ask_vlm</code> to measure tokens/sec, and decide whether this model could run at several frames/sec on a live camera feed</li>
+          <li>Challenge 4: find a case where the model gets something wrong (counting, small text, ambiguous questions, out-of-scope knowledge)</li>
+          <li>Challenge 5: compare the 2.2B model against the 256M model on the same question &mdash; which would you pick for a Jetson-class robot, and what are you trading away?</li>
+        </ul>
+      </div>
+
     </div>
 
     <a class="back-link" href="/schedule">&larr; Back to Schedule</a>
