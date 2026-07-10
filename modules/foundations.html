@@ -581,21 +581,19 @@ class SimpleRNN(nn.Module):
         </ul>
       </div>
 
-      <!-- SET 5: Multimodal Foundation Models & Edge AI -->
-      <h3 style="margin-top:40px;color:var(--primary-color);">Set 5 &mdash; Multimodal Foundation Models &amp; Edge AI</h3>
-      <p style="margin-top:-6px;color:var(--text-light);">Vision-language models, and what it costs to run them outside the cloud.</p>
+      <!-- SET 5: Multimodal Models & Edge AI -->
+      <h3 style="margin-top:40px;color:var(--primary-color);">Set 5 &mdash; Multimodal Models &amp; Edge AI</h3>
+      <p style="margin-top:-6px;color:var(--text-light);">Friday&rsquo;s pair of lectures: how Vision-Language Models see images, and what it costs to run them outside the cloud.</p>
 
       <div class="activity-item" style="margin-top:30px;">
-        <h3>Talking to a Real VLM: Running an Open-Source Vision-Language Model</h3>
+        <h3>Hands-On: Running an Open-Source VLM</h3>
         <p>
-          Lecture showed closed, cloud-hosted VLMs like GPT-4V, Gemini, and Claude &mdash; models
-          you never get to look inside. In this notebook you load and run a real, open-source VLM
-          yourself, on a free Colab GPU: <strong>SmolVLM2 (2.2B parameters)</strong> from Hugging
-          Face. You&rsquo;ll walk the same pipeline from lecture &mdash;
-          <em>image &rarr; vision encoder &rarr; tokens &rarr; language model &rarr; answer</em>
-          &mdash; then measure how expensive that pipeline actually is (seconds and tokens/sec),
-          and compare it against a 9x-smaller 256M-parameter version of the same model to see the
-          size/speed/quality tradeoff behind &ldquo;Bringing AI to the Edge.&rdquo;
+          Lecture showed you closed, cloud-hosted VLMs like GPT-4V, Gemini, and Claude &mdash; powerful,
+          but impossible to look inside. In this notebook you load and run a real, open-source
+          Vision-Language Model (<strong>SmolVLM2-2.2B-Instruct</strong>) yourself on a free Colab GPU,
+          ask it questions about images, upload a photo of your own, and then measure &mdash; in actual
+          seconds and tokens per second &mdash; the speed/quality trade-off that motivates the
+          &ldquo;Bringing AI to the Edge&rdquo; lecture later that day.
         </p>
         <p style="margin-top:10px;">
           <a class="colab-link"
@@ -605,14 +603,37 @@ class SimpleRNN(nn.Module):
           </a>
         </p>
 
+        <h4 style="margin-top:16px;color:var(--accent-color);">What we focus on in the notebook</h4>
+        <pre><code>from transformers import AutoProcessor, AutoModelForImageTextToText
+
+MODEL_ID = "HuggingFaceTB/SmolVLM2-2.2B-Instruct"
+
+processor = AutoProcessor.from_pretrained(MODEL_ID)
+model = AutoModelForImageTextToText.from_pretrained(
+    MODEL_ID,
+    torch_dtype=torch.bfloat16,
+).to("cuda")
+
+# A VLM conversation looks just like an LLM chat — except one
+# message is an image instead of text.
+conversation = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "image", "path": "dog.jpg"},
+            {"type": "text", "text": "What's in this image? Describe it in two sentences."},
+        ],
+    }
+]</code></pre>
+
         <ul style="margin-top:12px;">
-          <li>Turn on the Colab GPU, load SmolVLM2, and ask it questions about the provided sample images</li>
-          <li>Write three of your own questions about <code>street_scene.jpg</code>, including at least one that requires counting or comparing</li>
-          <li>Upload your own photo and ask the model about it</li>
-          <li>Measure tokens/sec and decide: could this model realistically run on a live camera feed at several frames per second?</li>
-          <li>Try to break it &mdash; find a prompt where the model gets something wrong or confused, and note what happened</li>
-          <li>Load the 256M-parameter version and compare speed and answer quality against the 2.2B model</li>
-          <li>Discussion: if you were deploying a VLM on a robot with very limited compute (like the Jetson boards from lecture), which model would you pick, and what would you be trading away?</li>
+          <li>Turn on the Colab GPU and confirm it&rsquo;s visible to PyTorch</li>
+          <li>Load SmolVLM2 and ask it several questions about a sample image, then upload and question a photo of your own</li>
+          <li>Challenge: ask a counting or comparison question &mdash; a spot where VLMs are often weaker than on general description</li>
+          <li>Measure real inference speed (seconds and tokens/sec) and connect it to the &ldquo;real-time perception&rdquo; example from the Edge AI lecture</li>
+          <li>Challenge: try to break the model &mdash; cluttered scenes, small text, trick questions &mdash; and write down what you find</li>
+          <li>Bonus: load the 9x-smaller <strong>SmolVLM2-256M</strong> and compare its speed and answer quality to the 2.2B model</li>
+          <li>Discussion: on a robot with very limited compute (like the Jetson boards from lecture), which model would you pick, and what would you be trading away?</li>
         </ul>
       </div>
 
