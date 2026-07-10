@@ -581,8 +581,43 @@ class SimpleRNN(nn.Module):
         </ul>
       </div>
 
-      <!-- SET 5: Spot-It Challenge -->
-      <h3 style="margin-top:40px;color:var(--primary-color);">Set 5 &mdash; Spot-It Challenge</h3>
+      <!-- SET 5: Multimodal Foundation Models & Edge AI -->
+      <h3 style="margin-top:40px;color:var(--primary-color);">Set 5 &mdash; Multimodal Foundation Models &amp; Edge AI</h3>
+      <p style="margin-top:-6px;color:var(--text-light);">Vision-language models, and what it costs to run them outside the cloud.</p>
+
+      <div class="activity-item" style="margin-top:30px;">
+        <h3>Talking to a Real VLM: Running an Open-Source Vision-Language Model</h3>
+        <p>
+          Lecture showed closed, cloud-hosted VLMs like GPT-4V, Gemini, and Claude &mdash; models
+          you never get to look inside. In this notebook you load and run a real, open-source VLM
+          yourself, on a free Colab GPU: <strong>SmolVLM2 (2.2B parameters)</strong> from Hugging
+          Face. You&rsquo;ll walk the same pipeline from lecture &mdash;
+          <em>image &rarr; vision encoder &rarr; tokens &rarr; language model &rarr; answer</em>
+          &mdash; then measure how expensive that pipeline actually is (seconds and tokens/sec),
+          and compare it against a 9x-smaller 256M-parameter version of the same model to see the
+          size/speed/quality tradeoff behind &ldquo;Bringing AI to the Edge.&rdquo;
+        </p>
+        <p style="margin-top:10px;">
+          <a class="colab-link"
+             href="https://colab.research.google.com/github/cosmos-ai-ucm/cosmos-ai-ucm.github.io/blob/main/modules/vlm_hands_on.ipynb"
+             target="_blank" rel="noopener">
+            &#9654; Open in Google Colab
+          </a>
+        </p>
+
+        <ul style="margin-top:12px;">
+          <li>Turn on the Colab GPU, load SmolVLM2, and ask it questions about the provided sample images</li>
+          <li>Write three of your own questions about <code>street_scene.jpg</code>, including at least one that requires counting or comparing</li>
+          <li>Upload your own photo and ask the model about it</li>
+          <li>Measure tokens/sec and decide: could this model realistically run on a live camera feed at several frames per second?</li>
+          <li>Try to break it &mdash; find a prompt where the model gets something wrong or confused, and note what happened</li>
+          <li>Load the 256M-parameter version and compare speed and answer quality against the 2.2B model</li>
+          <li>Discussion: if you were deploying a VLM on a robot with very limited compute (like the Jetson boards from lecture), which model would you pick, and what would you be trading away?</li>
+        </ul>
+      </div>
+
+      <!-- SET 6: Spot-It Challenge -->
+      <h3 style="margin-top:40px;color:var(--primary-color);">Set 6 &mdash; Spot-It Challenge</h3>
       <p style="margin-top:-6px;color:var(--text-light);">A Kaggle competition built around the Spot-It card game &mdash; every pair of cards shares exactly one symbol. Your job: build a model that finds it.</p>
 
       <div class="activity-item" style="margin-top:30px;">
