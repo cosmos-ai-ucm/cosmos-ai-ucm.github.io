@@ -27,6 +27,8 @@ navigation:
     url: /
   - title: Schedule
     url: /schedule
+  - title: Project
+    url: /project
   - title: Faculty & Staff
     url: /staff
   - title: Resources
